@@ -27,3 +27,8 @@ class UserOut(BaseModel):
     email: EmailStr
     role: UserRole
     created_at: datetime
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+

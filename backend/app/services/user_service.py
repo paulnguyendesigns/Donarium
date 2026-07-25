@@ -1,7 +1,7 @@
 from datetime import datetime
 from app.database.connection import database
 from app.schemas.user import UserCreate
-from app.utils.security import hash_password
+from app.utils.security import hash_password, verify_password
 
 users_collection = database["users"]
 
@@ -23,3 +23,13 @@ def create_user(user_data: UserCreate) -> dict:
     result = users_collection.insert_one(user_document)
     user_document["_id"] = result.inserted_id
     return user_document
+
+def authenticate_user(email: str, password: str) -> dict:
+    user = users_collection.find_one({"email": email})
+    if not user:
+        raise ValueError("Invalid email or password.")
+
+    if not verify_password(password, user["password_hash"]):
+        raise ValueError("Invalid email or password.")
+
+    return user
