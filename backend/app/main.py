@@ -1,8 +1,21 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database.connection import database
+from app.routers import auth
 
-app = FastAPI(title="Donarium API")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    database.command("ping")
+    print("✅ Connected to MongoDB")
+
+    yield
+
+    print("🛑 Server closed")
+
+
+app = FastAPI(title="Donarium API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -12,11 +25,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-@app.on_event("startup")
-def startup():
-    database.command("ping")
-    print("✅ Connected to MongoDB")
+app.include_router(auth.router)
 
 
 @app.get("/health")
