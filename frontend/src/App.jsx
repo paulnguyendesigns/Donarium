@@ -1,22 +1,19 @@
-import { useEffect, useState } from "react";
-import api from "./services/api";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  const [status, setStatus] = useState("checking...");
-
-  useEffect(() => {
-    api
-      .get("/health")
-      .then((response) => setStatus(response.data.status))
-      .catch(() => setStatus("backend unreachable"));
-  }, []);
-
   return (
-    <div>
-      <h1>Donarium</h1>
-      <p>Backend status: {status}</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>
+        <Route path="/" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
