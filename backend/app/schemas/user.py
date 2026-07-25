@@ -11,7 +11,7 @@ class UserRole(str, Enum):
 
 
 class UserCreate(BaseModel):
-    """What the client sends when registering."""
+    # what the client sends
     first_name: str
     last_name: str
     email: EmailStr
@@ -20,13 +20,14 @@ class UserCreate(BaseModel):
 
 
 class UserOut(BaseModel):
-    """What the API returns — notice password_hash is never included."""
+    # safely secures password
     id: str
     first_name: str
     last_name: str
     email: EmailStr
     role: UserRole
     created_at: datetime
+
 
 class UserLogin(BaseModel):
     email: EmailStr

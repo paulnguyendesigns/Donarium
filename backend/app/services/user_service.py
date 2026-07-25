@@ -3,7 +3,7 @@ from app.database.connection import database
 from app.schemas.user import UserCreate
 from app.utils.security import hash_password, verify_password
 
-users_collection = database["users"]
+users_collection = database["users"] # names the database "users" on MongoDB
 
 
 def create_user(user_data: UserCreate) -> dict:
