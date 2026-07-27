@@ -9,8 +9,11 @@ Communities often have unused supplies and organizations willing to help, but th
 ## Tech Stack
 
 **Frontend:** React (Vite), JavaScript, React Router, Axios
+
 **Backend:** Python, FastAPI
+
 **Database:** MongoDB (Atlas), PyMongo
+
 **Auth:** JWT (python-jose), bcrypt password hashing, role-based authorization
 
 ## Features (current)
