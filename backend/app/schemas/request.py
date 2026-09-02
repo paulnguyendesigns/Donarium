@@ -59,3 +59,4 @@ class RequestOut(BaseModel):
     city: str
     state: str
     created_at: datetime
+    fulfilled_by: Optional[str] = None

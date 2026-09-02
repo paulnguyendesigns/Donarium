@@ -6,8 +6,10 @@ from app.services.request_service import (
     get_request_by_id,
     update_request,
     delete_request,
+    fulfill_request
 )
 from app.utils.dependencies import get_current_user
+from typing import Optional
 
 router = APIRouter(prefix="/requests", tags=["requests"])
 
@@ -26,6 +28,7 @@ def to_request_out(doc: dict) -> RequestOut:
         city=doc["city"],
         state=doc["state"],
         created_at=doc["created_at"],
+        fulfilled_by=doc.get("fulfilled_by"),
     )
 
 
@@ -42,8 +45,20 @@ def create(data: RequestCreate, current_user: dict = Depends(get_current_user)):
 
 
 @router.get("/", response_model=list[RequestOut])
-def list_requests():
-    docs = get_all_requests()
+def list_requests(
+    status: Optional[str] = None,
+    category: Optional[str] = None,
+    city: Optional[str] = None,
+    state: Optional[str] = None,
+    urgency: Optional[str] = None,
+):
+    docs = get_all_requests(
+        status=status,
+        category=category,
+        city=city,
+        state=state,
+        urgency=urgency,
+    )
     return [to_request_out(doc) for doc in docs]
 
 
@@ -81,3 +96,23 @@ def delete(request_id: str, current_user: dict = Depends(get_current_user)):
 
     if not deleted:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Request not found.")
+
+@router.post("/{request_id}/fulfill", response_model=RequestOut)
+def fulfill(request_id: str, current_user: dict = Depends(get_current_user)):
+    if current_user["role"] != "donor":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Only donors can fulfill requests.",
+        )
+
+    try:
+        doc = fulfill_request(request_id, donor_id=str(current_user["_id"]))
+    except ValueError as e:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+    except PermissionError as e:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=str(e))
+
+    if doc is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Request not found.")
+
+    return to_request_out(doc)

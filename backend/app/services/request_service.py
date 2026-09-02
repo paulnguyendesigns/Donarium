@@ -27,8 +27,26 @@ def create_request(data: RequestCreate, teacher_id: str) -> dict:
     return request_document
 
 
-def get_all_requests() -> list[dict]:
-    return list(requests_collection.find())
+def get_all_requests(
+    status: str | None = None,
+    category: str | None = None,
+    city: str | None = None,
+    state: str | None = None,
+    urgency: str | None = None,
+) -> list[dict]:
+    query = {}
+    if status:
+        query["status"] = status
+    if category:
+        query["category"] = category
+    if city:
+        query["city"] = city
+    if state:
+        query["state"] = state
+    if urgency:
+        query["urgency"] = urgency
+
+    return list(requests_collection.find(query))
 
 
 def get_request_by_id(request_id: str) -> dict | None:
@@ -65,3 +83,22 @@ def delete_request(request_id: str, teacher_id: str) -> bool:
 
     requests_collection.delete_one({"_id": ObjectId(request_id)})
     return True
+
+def fulfill_request(request_id: str, donor_id: str) -> dict:
+    existing = get_request_by_id(request_id)
+    if existing is None:
+        return None
+
+    if existing["status"] != "open":
+        raise ValueError("This request is not open for fulfillment.")
+
+    if existing["teacher_id"] == donor_id:
+        raise PermissionError("You cannot fulfill your own request.")
+    
+    update_fields = {"status": "fulfilled","fulfilled_by": donor_id}
+    
+    requests_collection.update_one(
+        {"_id": ObjectId(request_id)}, {"$set": update_fields}
+    )
+
+    return get_request_by_id(request_id)
