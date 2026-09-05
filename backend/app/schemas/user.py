@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Optional
 from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 
@@ -33,3 +34,11 @@ class UserLogin(BaseModel):
     email: EmailStr
     password: str
 
+class OrganizationOut(BaseModel):
+    id: str
+    first_name: str
+    last_name: str
+    city: Optional[str] = None
+    state: Optional[str] = None
+    latitude: float
+    longitude: float

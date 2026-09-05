@@ -33,3 +33,13 @@ def authenticate_user(email: str, password: str) -> dict:
         raise ValueError("Invalid email or password.")
 
     return user
+
+def get_organization_locations() -> list[dict]:
+    return list(
+        users_collection.find(
+            {
+                "role": {"$in": ["teacher", "organization"]},
+                "latitude": {"$ne": None},
+            }
+        )
+    )

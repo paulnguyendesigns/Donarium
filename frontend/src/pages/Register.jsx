@@ -32,54 +32,61 @@ function Register() {
 
   return (
     <div className="auth-page">
-      <form onSubmit={handleSubmit} className="auth-form">
-        <h1>Create your Donarium account</h1>
+      <div className="auth-card">
+        <span className="wordmark">Donarium</span>
+        <h1>Create your account</h1>
+        <p className="auth-tagline">Join Donarium as a requester or a donor.</p>
 
-        {error && <p className="error">{error}</p>}
+        {error && <div className="error-banner">{error}</div>}
 
-        <input
-          name="first_name"
-          placeholder="First name"
-          value={formData.first_name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          name="last_name"
-          placeholder="Last name"
-          value={formData.last_name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password (min 8 characters)"
-          value={formData.password}
-          onChange={handleChange}
-          required
-          minLength={8}
-        />
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="field-row">
+            <div className="field">
+              <label htmlFor="first_name">First name</label>
+              <input id="first_name" name="first_name" value={formData.first_name} onChange={handleChange} required />
+            </div>
+            <div className="field">
+              <label htmlFor="last_name">Last name</label>
+              <input id="last_name" name="last_name" value={formData.last_name} onChange={handleChange} required />
+            </div>
+          </div>
 
-        <select name="role" value={formData.role} onChange={handleChange}>
-          <option value="teacher">Teacher / Organization</option>
-          <option value="donor">Donor</option>
-        </select>
+          <div className="field">
+            <label htmlFor="email">Email</label>
+            <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
+          </div>
 
-        <button type="submit">Register</button>
+          <div className="field">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              minLength={8}
+            />
+            <span className="field-hint">At least 8 characters</span>
+          </div>
 
-        <p>
+          <div className="field">
+            <label htmlFor="role">I am a</label>
+            <select id="role" name="role" value={formData.role} onChange={handleChange}>
+              <option value="teacher">Teacher / Organization</option>
+              <option value="donor">Donor</option>
+            </select>
+          </div>
+
+          <button type="submit" className="btn btn-primary btn-full">
+            Register
+          </button>
+        </form>
+
+        <p className="auth-switch">
           Already have an account? <Link to="/login">Log in</Link>
         </p>
-      </form>
+      </div>
     </div>
   );
 }

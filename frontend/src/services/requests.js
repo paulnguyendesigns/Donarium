@@ -7,3 +7,7 @@ export function getRequests(filters = {}) {
 export function fulfillRequest(requestId) {
   return api.post(`/requests/${requestId}/fulfill`);
 }
+
+export function createRequest(data) {
+  return api.post("/requests/", data);
+}

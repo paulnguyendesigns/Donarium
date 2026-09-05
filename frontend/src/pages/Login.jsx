@@ -29,34 +29,33 @@ function Login() {
 
   return (
     <div className="auth-page">
-      <form onSubmit={handleSubmit} className="auth-form">
-        <h1>Log in to Donarium</h1>
+      <div className="auth-card">
+        <span className="wordmark">Donarium</span>
+        <h1>Log in</h1>
+        <p className="auth-tagline">Connecting classrooms with the community that supports them.</p>
 
-        {error && <p className="error">{error}</p>}
+        {error && <div className="error-banner">{error}</div>}
 
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="field">
+            <label htmlFor="email">Email</label>
+            <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
+          </div>
 
-        <button type="submit">Log in</button>
+          <div className="field">
+            <label htmlFor="password">Password</label>
+            <input id="password" name="password" type="password" value={formData.password} onChange={handleChange} required />
+          </div>
 
-        <p>
+          <button type="submit" className="btn btn-primary btn-full">
+            Log in
+          </button>
+        </form>
+
+        <p className="auth-switch">
           Don't have an account? <Link to="/register">Register</Link>
         </p>
-      </form>
+      </div>
     </div>
   );
 }
