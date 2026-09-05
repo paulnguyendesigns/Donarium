@@ -18,6 +18,9 @@ class UserCreate(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8)
     role: UserRole
+    address: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
 
 
 class UserOut(BaseModel):
@@ -27,6 +30,11 @@ class UserOut(BaseModel):
     last_name: str
     email: EmailStr
     role: UserRole
+    address: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
     created_at: datetime
 
 
@@ -42,3 +50,10 @@ class OrganizationOut(BaseModel):
     state: Optional[str] = None
     latitude: float
     longitude: float
+
+class UserUpdate(BaseModel):
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    address: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None

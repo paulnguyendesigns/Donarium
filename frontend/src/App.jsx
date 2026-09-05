@@ -6,6 +6,8 @@ import Requests from "./pages/Requests";
 import CreateRequest from "./pages/CreateRequest";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AppLayout from "./components/AppLayout";
+import OrganizationsMap from "./pages/OrganizationsMap";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -39,6 +41,26 @@ function App() {
             <ProtectedRoute>
               <AppLayout>
                 <CreateRequest />
+              </AppLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/organizations"
+          element={
+            <ProtectedRoute>
+              <AppLayout>
+                <OrganizationsMap />
+              </AppLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <AppLayout>
+                <Profile />
               </AppLayout>
             </ProtectedRoute>
           }

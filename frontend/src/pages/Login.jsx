@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../services/api";
 import { useAuth } from "../context/AuthContext";
+import Navbar from "../components/Navbar";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -28,11 +29,13 @@ function Login() {
   }
 
   return (
-    <div className="auth-page">
-      <div className="auth-card">
-        <span className="wordmark">Donarium</span>
-        <h1>Log in</h1>
-        <p className="auth-tagline">Connecting classrooms with the community that supports them.</p>
+    <div className="auth-shell">
+      <Navbar />
+      <div className="auth-page">
+        <div className="auth-card">
+          <span className="wordmark">Donarium</span>
+          <h1>Log in</h1>
+          <p className="auth-tagline">Connecting classrooms with the community that supports them.</p>
 
         {error && <div className="error-banner">{error}</div>}
 
@@ -55,6 +58,7 @@ function Login() {
         <p className="auth-switch">
           Don't have an account? <Link to="/register">Register</Link>
         </p>
+        </div>
       </div>
     </div>
   );

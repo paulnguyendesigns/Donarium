@@ -1,45 +1,52 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const ROLE_COLORS = {
-  teacher: "var(--forest)",
-  organization: "var(--forest)",
-  donor: "var(--marigold-dark)",
-  admin: "var(--brick)",
-};
-
 function Navbar() {
   const { user, logout } = useAuth();
 
-  if (!user) return null;
-
   return (
     <header className="navbar">
-      <NavLink to="/dashboard" className="wordmark">
+      <NavLink to={user ? "/dashboard" : "/login"} className="wordmark">
         Donarium
       </NavLink>
 
-      <nav className="navbar-links">
-        <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "active" : "")}>
-          Dashboard
-        </NavLink>
-        <NavLink to="/requests" className={({ isActive }) => (isActive ? "active" : "")}>
-          Requests
-        </NavLink>
-      </nav>
+      {user ? (
+        <>
+            <nav className="navbar-links">
+            <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "active" : "")}>
+                Dashboard
+            </NavLink>
+            <NavLink to="/requests" className={({ isActive }) => (isActive ? "active" : "")}>
+                Requests
+            </NavLink>
+            <NavLink to="/organizations" className={({ isActive }) => (isActive ? "active" : "")}>
+                Organizations
+            </NavLink>
+            </nav>
 
-      <div className="navbar-user">
-        <span className="role-chip">
-          <span
-            className="role-dot"
-            style={{ background: ROLE_COLORS[user.role] || "var(--ink-soft)" }}
-          />
-          {user.first_name}
-        </span>
-        <button onClick={logout} className="btn btn-ghost btn-small">
-          Log out
-        </button>
-      </div>
+            <div className="navbar-user">
+            <NavLink
+                to="/profile"
+                className={({ isActive }) => "navbar-profile-link" + (isActive ? " active" : "")}
+            >
+                <i className="ri-user-3-line"></i>
+                <span>{user.first_name}</span>
+            </NavLink>
+            <button onClick={logout} className="btn btn-ghost btn-small">
+                Log out
+            </button>
+            </div>
+        </>
+      ) : (
+        <nav className="navbar-links">
+          <NavLink to="/login" className={({ isActive }) => (isActive ? "active" : "")}>
+            Log in
+          </NavLink>
+          <NavLink to="/register" className="btn btn-secondary btn-small">
+            Register
+          </NavLink>
+        </nav>
+      )}
     </header>
   );
 }
