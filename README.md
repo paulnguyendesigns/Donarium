@@ -39,3 +39,77 @@ Classrooms and community organizations often have specific, recurring supply nee
 - Saved/bookmarked requests for donors
 
 ## Project Structure
+
+```
+donarium/
+├── backend/
+│   ├── requirements.txt
+│   └── app/
+│       ├── main.py
+│       ├── routers/       # auth, requests, organizations
+│       ├── schemas/       # Pydantic request/response models
+│       ├── services/      # business logic (users, requests)
+│       ├── database/      # MongoDB connection
+│       └── utils/         # security (JWT/bcrypt), geocoding, auth dependencies
+└── frontend/
+    └── src/
+        ├── pages/          # Login, Register, Dashboard, Requests, CreateRequest, Profile, OrganizationsMap
+        ├── components/     # Navbar, AppLayout, ProtectedRoute
+        ├── context/        # AuthContext (global auth state)
+        └── services/       # Axios API clients (api, requests, users, organizations)
+```
+
+## Local Setup
+
+### Backend
+
+```bash
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Create `backend/.env`:
+```
+MONGODB_URI=your_mongodb_atlas_connection_string
+JWT_SECRET_KEY=your_generated_secret
+```
+
+Run:
+```bash
+uvicorn app.main:app --reload
+```
+
+API docs available at `http://127.0.0.1:8000/docs`.
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+Create `frontend/.env`:
+```
+VITE_API_BASE_URL=http://127.0.0.1:8000
+```
+
+Run:
+```bash
+npm run dev
+```
+
+App available at `http://localhost:5173`.
+
+## Deployment
+
+- **Frontend** is deployed on [Vercel](https://vercel.com), auto-deploying from the `frontend/` directory on push to `main`.
+- **Backend** is deployed on [Render](https://render.com) as a web service, auto-deploying from the `backend/` directory on push to `main`.
+- **Database** is hosted on [MongoDB Atlas](https://www.mongodb.com/atlas), with network access configured to allow connections from Render.
+
+Both deployments read their configuration (`MONGODB_URI`, `JWT_SECRET_KEY`, `VITE_API_BASE_URL`) from platform-level environment variables, not from committed `.env` files.
+
+## Status
+
+🚀 Deployed and functional — core donation workflow (post → browse/filter → fulfill) is complete, along with organization geocoding, map discovery, and profile management. Testing and admin features are the main remaining gaps before this is fully "done."
