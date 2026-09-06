@@ -42,7 +42,7 @@ function Navbar() {
           <NavLink to="/login" className={({ isActive }) => (isActive ? "active" : "")}>
             Log in
           </NavLink>
-          <NavLink to="/register" className="btn btn-secondary btn-small">
+          <NavLink to="/register" className={({ isActive }) => (isActive ? "active" : "")}>
             Register
           </NavLink>
         </nav>
