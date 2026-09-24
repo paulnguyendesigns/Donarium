@@ -1,34 +1,42 @@
 # Donarium
 
-Donarium is a community resource platform that connects people and organizations with unused resources to people who need them — starting with schools, teachers, and low-income communities needing supplies, food assistance, hygiene products, and other basic necessities.
+Donarium is a community donation platform that connects teachers and organizations posting supply needs with donors who can fulfill them — starting with schools and low-income communities needing school supplies, food assistance, hygiene products, and other basic necessities.
+
+**Live demo:** [https://donarium-nine.vercel.app](https://donarium-nine.vercel.app)
+
+**API:** [https://donarium-f8c0.onrender.com/docs](https://donarium-f8c0.onrender.com/docs)
 
 ## Problem
 
-Communities often have unused supplies and organizations willing to help, but the people who need those resources don't know where to find them. Donarium creates a centralized platform where organizations can post resource needs and donors can discover and fulfill them.
+Classrooms and community organizations often have specific, recurring supply needs, while willing donors have no easy way to find out what's actually needed nearby. Donarium creates a centralized platform where organizations can post requests and donors can browse, filter, and fulfill them.
 
 ## Tech Stack
 
-**Frontend:** React (Vite), JavaScript, React Router, Axios
-
+**Frontend:** React (Vite), JavaScript, React Router, Axios, Leaflet/React-Leaflet
 **Backend:** Python, FastAPI
-
 **Database:** MongoDB (Atlas), PyMongo
-
 **Auth:** JWT (python-jose), bcrypt password hashing, role-based authorization
+**Geocoding/Maps:** Nominatim (OpenStreetMap), Leaflet, OpenStreetMap tiles
+**Deployment:** Vercel (frontend), Render (backend), MongoDB Atlas (database)
 
-## Features (current)
+## Features
 
-- User registration and login (roles: teacher/organization, donor)
-- JWT-based authentication with protected routes
-- Resource request CRUD (create, read, update, delete) with ownership checks
-- Role-based authorization (only teachers/organizations can create requests)
+- User registration and login (roles: teacher/organization, donor) with JWT-based authentication and protected routes
+- Password hashing via bcrypt, with a validated address/geocoding flow for organizations
+- Resource request CRUD with ownership checks — only a request's creator can edit or delete it
+- Role-based authorization — only teachers/organizations can create requests; only donors can fulfill them
+- Donor fulfillment workflow — donors mark open requests as fulfilled; creators can't fulfill their own requests
+- Query-based filtering on requests (status, category)
+- Organization geocoding — addresses are converted to coordinates via Nominatim and stored on the user's profile
+- Interactive map (Leaflet + OpenStreetMap) showing all organization locations, viewable by guests without an account
+- Profile editing — update name and, for organizations, drop-off address (re-geocoded automatically on change)
+- Deployed and publicly accessible (Vercel + Render + MongoDB Atlas)
 
 ## Planned
 
-- Donor browsing, search, filtering, and claiming requests
-- Map-based discovery (OpenStreetMap + React Leaflet)
-- Dashboards with real data
-- Deployment (Vercel + Render)
+- Automated testing (pytest for backend routes)
+- Admin functionality (manage users, review/remove requests)
+- Saved/bookmarked requests for donors
 
 ## Project Structure
 
@@ -38,17 +46,17 @@ donarium/
 │   ├── requirements.txt
 │   └── app/
 │       ├── main.py
-│       ├── routers/       # route definitions
+│       ├── routers/       # auth, requests, organizations
 │       ├── schemas/       # Pydantic request/response models
-│       ├── services/      # business logic
+│       ├── services/      # business logic (users, requests)
 │       ├── database/      # MongoDB connection
-│       └── utils/         # security, auth dependencies
+│       └── utils/         # security (JWT/bcrypt), geocoding, auth dependencies
 └── frontend/
     └── src/
-        ├── pages/          # Login, Register, Dashboard
-        ├── components/     # ProtectedRoute, reusable UI
+        ├── pages/          # Login, Register, Dashboard, Requests, CreateRequest, Profile, OrganizationsMap
+        ├── components/     # Navbar, AppLayout, ProtectedRoute
         ├── context/        # AuthContext (global auth state)
-        └── services/       # Axios API client
+        └── services/       # Axios API clients (api, requests, users, organizations)
 ```
 
 ## Local Setup
@@ -94,6 +102,14 @@ npm run dev
 
 App available at `http://localhost:5173`.
 
+## Deployment
+
+- **Frontend** is deployed on [Vercel](https://vercel.com), auto-deploying from the `frontend/` directory on push to `main`.
+- **Backend** is deployed on [Render](https://render.com) as a web service, auto-deploying from the `backend/` directory on push to `main`.
+- **Database** is hosted on [MongoDB Atlas](https://www.mongodb.com/atlas), with network access configured to allow connections from Render.
+
+Both deployments read their configuration (`MONGODB_URI`, `JWT_SECRET_KEY`, `VITE_API_BASE_URL`) from platform-level environment variables, not from committed `.env` files.
+
 ## Status
 
-🚧 In active development — MVP phase.
+🚀 Deployed and functional — core donation workflow (post → browse/filter → fulfill) is complete, along with organization geocoding, map discovery, and profile management. Testing and admin features are the main remaining gaps before this is fully "done."
