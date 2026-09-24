@@ -6,7 +6,7 @@ function Navbar() {
 
   return (
     <header className="navbar">
-      <NavLink to={user ? "/dashboard" : "/login"} className="wordmark">
+      <NavLink to="/" className="wordmark">
         Donarium
       </NavLink>
 

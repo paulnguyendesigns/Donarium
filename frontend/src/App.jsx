@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AppLayout from "./components/AppLayout";
 import OrganizationsMap from "./pages/OrganizationsMap";
 import Profile from "./pages/Profile";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -65,7 +66,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
