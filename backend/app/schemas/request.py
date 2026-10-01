@@ -24,7 +24,6 @@ class RequestStatus(str, Enum):
 
 
 class RequestCreate(BaseModel):
-    """What the teacher/org sends when creating a request."""
     title: str
     description: str
     category: RequestCategory
@@ -36,7 +35,7 @@ class RequestCreate(BaseModel):
 
 
 class RequestUpdate(BaseModel):
-    """What the teacher/org can edit. All fields optional — partial updates."""
+    # what the organization can edit
     title: Optional[str] = None
     description: Optional[str] = None
     category: Optional[RequestCategory] = None

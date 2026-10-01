@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { updateProfile } from "../services/users";
 
 function Profile() {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, logout} = useAuth();
   const isOrg = user.role === "teacher" || user.role === "organization";
 
   const [formData, setFormData] = useState({
@@ -86,6 +86,9 @@ function Profile() {
           {saving ? "Saving..." : "Save changes"}
         </button>
       </form>
+      <button onClick={logout} className="btn btn-ghost" style={{ marginTop: "1.5rem" }}>
+        Log out
+      </button>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 # Donarium
 
-Donarium is a community donation platform that connects teachers and organizations posting supply needs with donors who can fulfill them — starting with schools and low-income communities needing school supplies, food assistance, hygiene products, and other basic necessities.
+Donarium is a community donation platform that connects organizations with donors who can fulfill supply needs — starting with schools and low-income communities needing school supplies, food assistance, hygiene products, and other basic necessities.
 
 **Live demo:** [https://donarium-nine.vercel.app](https://donarium-nine.vercel.app)
 
