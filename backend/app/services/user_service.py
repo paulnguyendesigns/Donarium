@@ -18,7 +18,7 @@ def create_user(user_data: UserCreate) -> dict:
 
     if user_data.role in ("teacher", "organization"):
         if not (user_data.address and user_data.city and user_data.state):
-            raise ValueError("Teachers and organizations must provide an address, city, and state.")
+            raise ValueError("Organizations must provide an address, city, and state.")
 
         coordinates = geocode_address(user_data.address, user_data.city, user_data.state)
         if coordinates is None:

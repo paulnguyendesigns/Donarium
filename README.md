@@ -1,6 +1,6 @@
 # Donarium
 
-Donarium is a community donation platform that connects organizations with donors who can fulfill supply needs — starting with schools and low-income communities needing school supplies, food assistance, hygiene products, and other basic necessities.
+Donarium is a community resource hub that connects organizations with donors who can fulfill supply needs, such as schools and low-income communities that need school supplies, food assistance, hygiene products, and other basic necessities.
 
 **Live demo:** [https://donarium-nine.vercel.app](https://donarium-nine.vercel.app)
 
@@ -8,7 +8,7 @@ Donarium is a community donation platform that connects organizations with donor
 
 ## Problem
 
-Classrooms and community organizations often have specific, recurring supply needs, while willing donors have no easy way to find out what's actually needed nearby. Donarium creates a centralized platform where organizations can post requests and donors can browse, filter, and fulfill them.
+Community organizations often have many supply needs, while willing donors have no easy way to find out what's actually needed nearby. Donarium creates a centralized platform where organizations can post requests and donors can browse, filter, and fulfill them.
 
 ## Tech Stack
 
@@ -21,10 +21,10 @@ Classrooms and community organizations often have specific, recurring supply nee
 
 ## Features
 
-- User registration and login (roles: teacher/organization, donor) with JWT-based authentication and protected routes
+- User registration and login (roles: organization, donor) with JWT-based authentication and protected routes
 - Password hashing via bcrypt, with a validated address/geocoding flow for organizations
 - Resource request CRUD with ownership checks — only a request's creator can edit or delete it
-- Role-based authorization — only teachers/organizations can create requests; only donors can fulfill them
+- Role-based authorization — only ∂organizations can create requests; only donors can fulfill them
 - Donor fulfillment workflow — donors mark open requests as fulfilled; creators can't fulfill their own requests
 - Query-based filtering on requests (status, category)
 - Organization geocoding — addresses are converted to coordinates via Nominatim and stored on the user's profile

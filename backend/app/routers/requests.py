@@ -37,7 +37,7 @@ def create(data: RequestCreate, current_user: dict = Depends(get_current_user)):
     if current_user["role"] not in ("teacher", "organization"):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Only teachers or organizations can create requests.",
+            detail="Only organizations can create requests.",
         )
 
     doc = create_request(data, teacher_id=str(current_user["_id"]))

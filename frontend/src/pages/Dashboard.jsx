@@ -3,8 +3,8 @@ import { useAuth } from "../context/AuthContext";
 import { formatLabel } from "../utils/format";
 
 const ROLE_COLORS = {
-  teacher: "var(--forest)",
-  organization: "var(--forest)",
+  teacher: "var(--terracotta)",
+  organization: "var(--terracotta)",
   donor: "var(--marigold-dark)",
   admin: "var(--brick)",
 };
@@ -26,8 +26,8 @@ function Dashboard() {
       <h1>Welcome, {user.first_name}</h1>
       <p className="page-subtitle">
         {isRequester
-          ? "Post what your classroom or organization needs, and track it here as donors respond."
-          : "Browse what classrooms and organizations near you need right now."}
+          ? "Post requests or needs, and track it here as donors respond."
+          : "Browse what organizations near you need right now."}
       </p>
 
       <div className="dashboard-actions">

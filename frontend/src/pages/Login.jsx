@@ -35,7 +35,7 @@ function Login() {
         <div className="auth-card">
           <span className="wordmark">Donarium</span>
           <h1>Log in</h1>
-          <p className="auth-tagline">Connecting classrooms with the community that supports them.</p>
+          <p className="auth-tagline">Sign in or create an account.</p>
 
         {error && <div className="error-banner">{error}</div>}
 

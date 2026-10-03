@@ -41,7 +41,7 @@ function Register() {
         <div className="auth-card">
           <span className="wordmark">Donarium</span>
           <h1>Create your account</h1>
-          <p className="auth-tagline">Join Donarium as a requester or a donor.</p>
+          <p className="auth-tagline">Join Donarium as an organization or a donor.</p>
 
           {error && <div className="error-banner">{error}</div>}
 
@@ -79,7 +79,7 @@ function Register() {
             <div className="field">
               <label htmlFor="role">I am a</label>
               <select id="role" name="role" value={formData.role} onChange={handleChange}>
-                <option value="teacher">Teacher / Organization</option>
+                <option value="teacher">Organization</option>
                 <option value="donor">Donor</option>
               </select>
             </div>

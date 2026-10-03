@@ -5,14 +5,14 @@ import { getRequests, fulfillRequest } from "../services/requests";
 import { formatLabel } from "../utils/format";
 
 const URGENCY_STRIPE = {
-  low: "var(--sage)",
+  low: "var(--peach)",
   medium: "var(--marigold)",
   high: "var(--brick)",
 };
 
 const STATUS_DOT = {
-  open: "var(--forest)",
-  fulfilled: "var(--sage)",
+  open: "var(--terracotta)",
+  fulfilled: "var(--peach)",
   closed: "var(--ink-soft)",
 };
 

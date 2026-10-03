@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import bottomPillImage from "../assets/bottom_pill.JPG";
+import middlePillImage from "../assets/middle_pill.jpeg";
+import topPillImage from "../assets/top_pill.jpeg";
+import snoopyImage from "../assets/snoopy.png";
 
 function Home() {
   const [typedText, setTypedText] = useState("");
@@ -64,17 +67,20 @@ function Home() {
               "We make a living by what we get, but we make a life by what we give." —Winston Churchill
             </p>
             <div className="hero-cta-group">
-              <Link to="/register" className="btn btn-primary btn-pill-lg">Get started</Link>
-              <Link to="/organizations" className="btn btn-secondary btn-pill-lg">View the map</Link>
+            <Link to="/register" className="btn btn-primary btn-pill-lg">Get started</Link>
+            <Link to="/organizations" className="btn btn-secondary btn-pill-lg">View the map</Link>
             </div>
+
+            <img src={snoopyImage} alt="" className="hero-accent-img" />
           </div>
 
           <div className="hero-visual">
             <div className="hero-oval hero-oval-top">
-              <i className="ri-hand-heart-line"></i>
+            <img src={topPillImage} alt="" className="hero-oval-img" />
+            <div className="hero-oval-fade"></div>
             </div>
             <div className="hero-oval hero-oval-main">
-              <i className="ri-hand-coin-line"></i>
+              <img src={middlePillImage} alt="" className="hero-oval-img" />
             </div>
             <div className="hero-oval hero-oval-bottom">
               <img src={bottomPillImage} alt="" className="hero-oval-img" />

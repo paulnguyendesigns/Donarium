@@ -45,7 +45,7 @@ function OrganizationsMap() {
     <div>
       <h1>Organizations</h1>
       <p className="page-subtitle">
-        See where classrooms and organizations on Donarium are located.
+        See where organizations on Donarium are located.
       </p>
 
       {loading && <p className="page-subtitle">Loading map…</p>}

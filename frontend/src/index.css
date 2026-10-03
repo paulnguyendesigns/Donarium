@@ -6,12 +6,12 @@
   --ink: #1A1A1A;
   --ink-soft: #000000;
   --line: #EAD9C8;
-  --forest: #C1613D;
-  --forest-dark: #A14E30;
+  --terracotta: #C1613D;
+  --terracotta-dark: #A14E30;
   --marigold: #F2B463;
   --marigold-dark: #E09A3E;
   --brick: #B23A2B;
-  --sage: #F4C9A0;
+  --peach: #F4C9A0;
   --radius: 4px;
   --radius-pill: 999px;
   --font-serif: 'Source Serif 4', Georgia, serif;
@@ -47,7 +47,7 @@ h3 { font-size: 1.15rem; margin: 0; }
 
 p { margin: 0 0 1rem; }
 
-a { color: var(--forest); }
+a { color: var(--terracotta); }
 
 a:focus-visible,
 button:focus-visible,
@@ -117,7 +117,7 @@ textarea:focus-visible {
   font-family: var(--font-serif);
   font-weight: 900;
   font-size: 36px;
-  color: var(--forest);
+  color: var(--terracotta);
   text-decoration: none;
   letter-spacing: -0.01em;
 }
@@ -148,28 +148,28 @@ textarea:focus-visible {
 
 .account-btn {
   margin-right: 20px;
-  background-color: #FFFFFF;
+  background-color: var(--terracotta);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.55rem 1.25rem;
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid var(--terracotta);
   border-radius: var(--radius-pill);
-  color: var(--ink);
+  color: #FFFFFF;
   font-size: 18px;
   font-weight: 700;
   text-decoration: none;
 }
 
-.account-btn:hover { background: var(--ink); color: var(--paper-raised); }
+.account-btn:hover { background: var(--terracotta-dark); border-color: var(--terracotta-dark); }
 
 .account-btn i { font-size: 1.05rem; }
 
 .success-banner {
-  border-left: 3px solid var(--forest);
+  border-left: 3px solid var(--terracotta);
   background: rgba(193, 97, 61, 0.08);
   padding: 0.75rem 1rem;
-  color: var(--forest);
+  color: var(--terracotta);
   font-size: 0.9rem;
   margin-bottom: 1.25rem;
   border-radius: 0 var(--radius) var(--radius) 0;
@@ -205,14 +205,14 @@ textarea:focus-visible {
   transition: background-color 150ms ease, border-color 150ms ease;
 }
 
-.btn-primary { background: var(--forest); color: var(--paper-raised); border-color: var(--forest); }
-.btn-primary:hover { background: var(--forest-dark); border-color: var(--forest-dark); }
+.btn-primary { background: var(--terracotta); color: var(--paper-raised); border-color: var(--terracotta); }
+.btn-primary:hover { background: var(--terracotta-dark); border-color: var(--terracotta-dark); }
 
 .btn-accent { background: var(--marigold); color: var(--ink); border-color: var(--marigold); }
 .btn-accent:hover { background: var(--marigold-dark); border-color: var(--marigold-dark); }
 
 .btn-secondary { background: var(--paper-raised); color: var(--ink); border-color: var(--line); }
-.btn-secondary:hover { border-color: var(--forest); }
+.btn-secondary:hover { border-color: var(--terracotta); }
 
 .btn-ghost { background: transparent; color: var(--ink-soft); border-color: transparent; padding: 0.4rem 0.75rem; }
 .btn-ghost:hover { color: var(--ink); }
@@ -280,7 +280,7 @@ textarea:focus-visible {
   font-family: var(--font-serif);
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--forest);
+  color: var(--terracotta);
   text-decoration: none;
   margin-bottom: 1.5rem;
 }
@@ -363,7 +363,7 @@ textarea:focus-visible {
 /* Misc */
 
 .back-link { display: inline-block; font-size: 0.9rem; color: var(--ink-soft); text-decoration: none; margin-bottom: 1rem; }
-.back-link:hover { color: var(--forest); }
+.back-link:hover { color: var(--terracotta); }
 
 .dashboard-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
 
@@ -410,7 +410,7 @@ textarea:focus-visible {
   font-family: var(--font-serif);
   font-weight: 700;
   font-size: 36px;
-  color: var(--forest);
+  color: var(--terracotta);
   margin-bottom: 0.5rem;
 }
 
@@ -448,7 +448,7 @@ textarea:focus-visible {
   width: 200px;
   height: 400px;
   border-radius: 1000px;
-  background: var(--sage);
+  background: var(--peach);
   font-size: 2.5rem;
   z-index: 0;
 }
@@ -470,7 +470,7 @@ textarea:focus-visible {
   width: 200px;
   height: 420px;
   border-radius: 1000px;
-  background: var(--forest);
+  background: var(--terracotta);
   font-size: 2.8rem;
   z-index: 2;
 }
@@ -481,10 +481,29 @@ textarea:focus-visible {
   object-fit: cover;
 }
 
+.hero-oval-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 70%);
+  pointer-events: none;
+}
+
 .hero-cursor {
   display: inline-block;
   color: var(--marigold);
   animation: blink 0.8s step-end infinite;
+}
+
+.hero-accent-img {
+  position: absolute;
+  left: 50%;
+  bottom: -160px;                
+  transform: translateX(-50%);  
+  width: 520px;
+  height: auto;
+  margin: 0;               
+  z-index: 0;
+  pointer-events: none;
 }
 
 @media (max-width: 900px) {
