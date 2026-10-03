@@ -1,73 +1,83 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import bottomPillImage from "../assets/bottom_pill.JPG";
 
 function Home() {
+  const [typedText, setTypedText] = useState("");
+
+  useEffect(() => {
+    const phrases = ["Donate!", "Make a difference!"];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let typingForward = true;
+    let timeoutId;
+
+    function typeLoop() {
+      const current = phrases[phraseIndex];
+      let delay;
+
+      if (typingForward) {
+        charIndex++;
+        setTypedText(current.slice(0, charIndex));
+        if (charIndex === current.length) {
+          typingForward = false;
+          delay = 1400;
+        } else {
+          delay = 75;
+        }
+      } else {
+        charIndex--;
+        setTypedText(current.slice(0, charIndex));
+        if (charIndex === 0) {
+          typingForward = true;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          delay = 400;
+        } else {
+          delay = 40;
+        }
+      }
+
+      timeoutId = setTimeout(typeLoop, delay);
+    }
+
+    typeLoop();
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <div className="home-shell">
-        <Navbar />
+      <Navbar />
 
-      <div className="home-row home-announce">
-        <span>It's a great day to donate!</span>
-        <Link to="/requests" className="btn btn-inverse btn-small">Fulfill a request</Link>
-      </div>
+      <section className="hero">
+        <div className="hero-inner">
+          <div className="hero-content">
+            <p className="hero-eyebrow">Donarium:</p>
+            <h1 className="hero-headline">
+              It's a great day to
+              <br />
+              <span className="hero-highlight">{typedText}</span>
+              <span className="hero-cursor">|</span>
+            </h1>
+            <p className="hero-sub">
+              "We make a living by what we get, but we make a life by what we give." —Winston Churchill
+            </p>
+            <div className="hero-cta-group">
+              <Link to="/register" className="btn btn-primary btn-pill-lg">Get started</Link>
+              <Link to="/organizations" className="btn btn-secondary btn-pill-lg">View the map</Link>
+            </div>
+          </div>
 
-      <section className="home-row home-section home-section-dark">
-        <div className="home-section-inner">
-          <div className="home-section-media">
-            <div className="home-media-icon home-media-icon-dark">
+          <div className="hero-visual">
+            <div className="hero-oval hero-oval-top">
               <i className="ri-hand-heart-line"></i>
             </div>
-          </div>
-          <div className="home-section-content">
-            <h2>Connect classrooms with the community that supports them.</h2>
-            <p>
-              Donarium lets teachers and organizations post what they need,
-              and donors nearby step in to help.
-            </p>
-            <div className="home-cta-group">
-              <Link to="/register" className="btn btn-inverse">Get started</Link>
-              <Link to="/login" className="btn btn-ghost-inverse">Log in</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="home-row home-section home-section-light home-section-reverse">
-        <div className="home-section-inner">
-          <div className="home-section-media">
-            <div className="home-media-icon home-media-icon-light">
-              <i className="ri-map-pin-line"></i>
-            </div>
-          </div>
-          <div className="home-section-content">
-            <h2>See what's needed, right on the map.</h2>
-            <p>
-              Every organization's drop-off location is geocoded and shown on
-              an interactive map — no account required to look.
-            </p>
-            <div className="home-cta-group">
-              <Link to="/organizations" className="btn btn-primary">View the map</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="home-row home-section home-section-dark">
-        <div className="home-section-inner">
-          <div className="home-section-media">
-            <div className="home-media-icon home-media-icon-dark">
+            <div className="hero-oval hero-oval-main">
               <i className="ri-hand-coin-line"></i>
             </div>
-          </div>
-          <div className="home-section-content">
-            <h2>Post a need. Fulfill a request. It only takes a minute.</h2>
-            <p>
-              Whether you're asking for help or offering it, Donarium makes
-              it simple to connect.
-            </p>
-            <div className="home-cta-group">
-              <Link to="/register" className="btn btn-inverse">Create an account</Link>
-              <Link to="/login" className="btn btn-ghost-inverse">Log in</Link>
+            <div className="hero-oval hero-oval-bottom">
+              <img src={bottomPillImage} alt="" className="hero-oval-img" />
             </div>
           </div>
         </div>

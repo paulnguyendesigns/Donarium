@@ -35,7 +35,7 @@ class RequestCreate(BaseModel):
 
 
 class RequestUpdate(BaseModel):
-    # what the organization can edit
+    # info that the organization can edit
     title: Optional[str] = None
     description: Optional[str] = None
     category: Optional[RequestCategory] = None
@@ -45,7 +45,7 @@ class RequestUpdate(BaseModel):
 
 
 class RequestOut(BaseModel):
-    """What the API returns."""
+    # info that the organization can see
     id: str
     teacher_id: str
     title: str

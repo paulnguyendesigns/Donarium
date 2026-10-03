@@ -49,11 +49,9 @@ function App() {
         <Route
           path="/organizations"
           element={
-            <ProtectedRoute>
-              <AppLayout>
-                <OrganizationsMap />
-              </AppLayout>
-            </ProtectedRoute>
+            <AppLayout>
+              <OrganizationsMap />
+            </AppLayout>
           }
         />
         <Route
