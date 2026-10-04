@@ -9,10 +9,15 @@ Donarium is a community resource hub that connects organizations with donors who
 ## Tech Stack
 
 **Frontend:** React (Vite), JavaScript, React Router, Axios, Leaflet/React-Leaflet
+
 **Backend:** Python, FastAPI
+
 **Database:** MongoDB (Atlas), PyMongo
+
 **Auth:** JWT (python-jose), bcrypt password hashing, role-based authorization
+
 **Geocoding/Maps:** Nominatim (OpenStreetMap), Leaflet, OpenStreetMap tiles
+
 **Deployment:** Vercel (frontend), Render (backend), MongoDB Atlas (database)
 
 ## Features
