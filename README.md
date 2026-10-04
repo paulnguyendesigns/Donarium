@@ -6,10 +6,6 @@ Donarium is a community resource hub that connects organizations with donors who
 
 **API:** [https://donarium-f8c0.onrender.com/docs](https://donarium-f8c0.onrender.com/docs)
 
-## Problem
-
-Community organizations often have many supply needs, while willing donors have no easy way to find out what's actually needed nearby. Donarium creates a centralized platform where organizations can post requests and donors can browse, filter, and fulfill them.
-
 ## Tech Stack
 
 **Frontend:** React (Vite), JavaScript, React Router, Axios, Leaflet/React-Leaflet
@@ -37,9 +33,10 @@ Community organizations often have many supply needs, while willing donors have 
 - Automated testing (pytest for backend routes)
 - Admin functionality (manage users, review/remove requests)
 - Saved/bookmarked requests for donors
+- Improving UI
 
 ## Project Structure
-
+ 
 ```
 donarium/
 ├── backend/
@@ -52,11 +49,13 @@ donarium/
 │       ├── database/      # MongoDB connection
 │       └── utils/         # security (JWT/bcrypt), geocoding, auth dependencies
 └── frontend/
+    ├── vercel.json         # SPA rewrite rule for client-side routing
     └── src/
-        ├── pages/          # Login, Register, Dashboard, Requests, CreateRequest, Profile, OrganizationsMap
+        ├── pages/          # Home, Login, Register, Dashboard, Requests, CreateRequest, Profile, OrganizationsMap
         ├── components/     # Navbar, AppLayout, ProtectedRoute
         ├── context/        # AuthContext (global auth state)
-        └── services/       # Axios API clients (api, requests, users, organizations)
+        ├── services/       # Axios API clients (api, requests, users, organizations)
+        └── assets/         # logo and image assets
 ```
 
 ## Local Setup
@@ -112,4 +111,4 @@ Both deployments read their configuration (`MONGODB_URI`, `JWT_SECRET_KEY`, `VIT
 
 ## Status
 
-🚀 Deployed and functional — core donation workflow (post → browse/filter → fulfill) is complete, along with organization geocoding, map discovery, and profile management. Testing and admin features are the main remaining gaps before this is fully "done."
+Deployed and functional! Core donation workflow (post → browse/filter → fulfill) is complete, along with organization geocoding, map discovery, and profile management. Testing and admin features are the main remaining gaps before this is fully "done."
