@@ -49,7 +49,7 @@ Donarium is a community resource hub that connects organizations with donors who
 2. Browse the map at `/organizations` as a guest (no account needed for this page).
 3. Register an account as either an **organization** (to post supply requests) or a **donor** (to browse and fulfill them).
    - Organizations enter a drop-off address, which is geocoded automatically and shown on the map.
-> Sample account for use:
+> Sample account for use - 
 > Email: paulxnguyen12@gmail.com
 > Password: chickenandwaffles
 4. As an organization, go to **Requests → New request** to post a supply need (category, urgency, drop-off details).
