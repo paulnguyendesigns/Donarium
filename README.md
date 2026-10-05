@@ -50,7 +50,7 @@ Donarium is a community resource hub that connects organizations with donors who
 3. Register an account as either an **organization** (to post supply requests) or a **donor** (to browse and fulfill them).
    - Organizations enter a drop-off address, which is geocoded automatically and shown on the map.
 > Sample account for use - 
-> Email: paulxnguyen12@gmail.com
+> Email: paulnguyen@ucdavis.edu
 > Password: chickenandwaffles
 4. As an organization, go to **Requests → New request** to post a supply need (category, urgency, drop-off details).
 5. As a donor, browse **Requests**, filter by status/category, and click **Fulfill** on an open request.
