@@ -6,6 +6,8 @@ Donarium is a community resource hub that connects organizations with donors who
 
 **API:** [https://donarium-f8c0.onrender.com/docs](https://donarium-f8c0.onrender.com/docs)
 
+> Note: the backend runs on Render's free tier, which goes down after inactivity. The first request after a long period of inactivity may take 30–60 seconds to respond.
+
 ## Tech Stack
 
 **Frontend:** React (Vite), JavaScript, React Router, Axios, Leaflet/React-Leaflet
@@ -39,6 +41,20 @@ Donarium is a community resource hub that connects organizations with donors who
 - Admin functionality (manage users, review/remove requests)
 - Saved/bookmarked requests for donors
 - Improving UI
+
+## Instructions
+ 
+1. Open the live demo: [https://donarium-nine.vercel.app](https://donarium-nine.vercel.app)
+> Note: the backend runs on Render's free tier, which goes down after inactivity. The first request after a long period of inactivity may take 30–60 seconds to respond.
+2. Browse the map at `/organizations` as a guest (no account needed for this page).
+3. Register an account as either an **organization** (to post supply requests) or a **donor** (to browse and fulfill them).
+   - Organizations enter a drop-off address, which is geocoded automatically and shown on the map.
+> Sample account for use:
+> Email: paulxnguyen12@gmail.com
+> Password: chickenandwaffles
+4. As an organization, go to **Requests → New request** to post a supply need (category, urgency, drop-off details).
+5. As a donor, browse **Requests**, filter by status/category, and click **Fulfill** on an open request.
+6. Visit **Profile** to edit your name or address, or to log out.
 
 ## Project Structure
  
